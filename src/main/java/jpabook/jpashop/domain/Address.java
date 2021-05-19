@@ -14,7 +14,6 @@ public class Address {
 
     // for JPA Lib using Reflection, Proxy
     protected Address() {
-
     }
 
     public Address(String city, String street, String zipcode) {

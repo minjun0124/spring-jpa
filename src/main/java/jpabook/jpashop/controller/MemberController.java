@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import javax.validation.Valid;
+import java.util.List;
 
 @Controller
 @RequiredArgsConstructor
@@ -41,5 +42,18 @@ public class MemberController {
 
         memberService.join(member);
         return "redirect:/";
+    }
+
+    /**
+     * 이 또한 Entity를 그대로 노출(전달)하는 것은 좋은 방법이 아니다.
+     * DTO를 통해 필요한 정보만 추려서 전달할 것.
+     * 1. 보안의 문제가 있다. Entity가 가진 외부에 노출돼서는 안되는 정보
+     * 2. APi의 불안정
+     */
+    @GetMapping("/members")
+    public String list(Model model) {
+        List<Member> members = memberService.findMembers();
+        model.addAttribute("members", members);
+        return "members/memberList";
     }
 }

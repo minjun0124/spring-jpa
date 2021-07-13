@@ -46,7 +46,7 @@ public class OrderRepository {
      * jpql을 String으로 만들어서 처리하는 방식은 복잡하며
      * 유지보수 측면에서 어렵고 버그 발생 확률도 높다.
      */
-    private List<Order> findAllByString(OrderSearch orderSearch) {
+    public List<Order> findAllByString(OrderSearch orderSearch) {
 
         String jpql = "select o from Order o join o.member m";
         boolean isFirstCondition = true;
